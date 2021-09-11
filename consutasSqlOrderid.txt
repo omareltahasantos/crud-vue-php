@@ -1,0 +1,30 @@
+Editar empleado
+
+
+
+Al darle click a editar quiero pasarle por router un param que sera el id del usuario, una vez en la otra pagina capturar ese valor id 
+
+
+
+
+//Ordenar mayor a menor DESC
+if (isset($_GET["ordenarDescId"])){
+    $sqlEmpleaados = mysqli_query($conexionBD,"SELECT * FROM empleados ORDER BY id DESC);
+    if(mysqli_num_rows($sqlEmpleaados) > 0){
+        $empleaados = mysqli_fetch_all($sqlEmpleaados,MYSQLI_ASSOC);
+        echo json_encode($empleaados);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
+//Ordenar mayor a menor asc
+if (isset($_GET["ordenarAscId"])){
+    $sqlEmpleaados = mysqli_query($conexionBD,"SELECT * FROM empleados ORDER BY id ASC
+    if(mysqli_num_rows($sqlEmpleaados) > 0){
+        $empleaados = mysqli_fetch_all($sqlEmpleaados,MYSQLI_ASSOC);
+        echo json_encode($empleaados);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
