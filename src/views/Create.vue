@@ -36,6 +36,22 @@
      <router-link to="/listar" class="cancelarBtn">Cancelar</router-link>
     </v-btn>
   </v-form>
+      <!--Snackbar que se desplegara cuando le demos  a crear un registro-->
+   <v-snackbar
+             v-model="snackbarCreate"
+        >
+          {{textCreate}}
+         <template v-slot:action="{ attrs }">
+            <v-btn
+              color="pink"
+              text
+              v-bind="attrs"
+              @click="snackbarCreate= false"
+            >
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
   </v-container>
 </template>
 
@@ -52,8 +68,10 @@ export default {
         empleado:
        {
          name: '',
-         email: ''
+         email: '',
        },
+       snackbarCreate: false,
+        textCreate: ''
     }
   },
 
@@ -68,9 +86,16 @@ export default {
       axios.post("http://localhost/empleados/?insertar=1", datosEnviar) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
         .then(response => console.log(response.data));
 
-      //Redireccionar a /listar
+        this.snackbarCreate = !this.snackbarCreate
+        
+        this.textCreate = 'El registro con nombre: ' + this.empleado.name + ' ha sido creado!'
 
-      window.location.href= "/listar"
+      //Redireccionar a /listar
+      setTimeout(() => {
+         window.location.href= "/listar"
+      }, 1000);
+
+     
 
     },
 

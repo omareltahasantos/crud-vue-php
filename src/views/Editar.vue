@@ -37,6 +37,24 @@
      <router-link to="/listar" class="cancelarBtn">Cancelar</router-link>
     </v-btn>
   </v-form>
+  <!-- Snackbar para el boton editar -->
+        <v-snackbar
+             v-model="snackbarEditar"
+        >
+          {{textEditar }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="pink"
+              text
+              v-bind="attrs"
+              @click="snackbarEditar = false"
+            >
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
+       
   </v-container>
 </template>
 
@@ -55,7 +73,9 @@ export default {
           id: '',
           name: '',
           email: ''
-        }
+        },
+        snackbarEditar: false,
+        textEditar: ''
     }
   },
 
@@ -77,23 +97,18 @@ export default {
   methods:{
 
     editarEmpleados(id){
-      const idEmpleado = id
-     console.log("Este es el id del empleado que queremos editar: " + idEmpleado)
+        const idEmpleado = id
 
         const datosEnviar2 =  { id:this.empleado.id, nombre: this.empleado.name, correo: this.empleado.email}
-
-        console.log("La variable datos enviar contiene: " + datosEnviar2.nombre + " " + datosEnviar2.correo)
-
-        
-
 
        axios.post("http://localhost/empleados/?actualizar="+this.empleado.id, datosEnviar2) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
        .then(response => console.log(response.data));
 
-      ///FALTA HACER EL UPDATE CON LA BASE DE DATOS, NO LLEGAN BIEN LOS VALORES
-      setTimeout(() => {
-          window.location.href= "listar"  
-      }, 1000);
+        this.snackbarEditar = !this.snackbarEditar
+        this.textEditar = 'El registro con id: ' + this.empleado.id + ' ha sido modificado!'
+        setTimeout(() => {
+            window.location.href= "listar"  
+        }, 1000);
       
     }
     
