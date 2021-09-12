@@ -5,31 +5,32 @@
       color="white"
       flat
     >
-      <v-avatar
-        :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-        size="32"
-      ></v-avatar>
-
-      <!--Hacer una lista en vez de tabs-->
-      <v-tabs
-        centered
-        class="ml-n9"
-        color="grey darken-1"
-      >
-        <v-tab
-          v-for="(link,index) in links"
-          :key="index"
-          :to="link.to"
+    
+        <v-tabs
+       
+          background-color="blue-grey darken-3 accent-4"
+          centered
+          dark
+          icons-and-text
         >
-          {{ link.name }}
-        </v-tab>
-      </v-tabs>
+      <v-tabs-slider></v-tabs-slider>
 
-      <v-avatar
-        class="hidden-sm-and-down"
-        color="grey darken-1 shrink"
-        size="32"
-      ></v-avatar>
+      <v-tab 
+           href="#tab-1" 
+           v-for="(link,index) in links" 
+           :key="index"
+           :to="link.to" >
+        {{link.name}}
+        <v-icon >{{link.icon}}</v-icon>
+      </v-tab>
+      
+     
+        </v-tabs>
+      <!--Hacer una lista en vez de tabs-->
+      
+     
+
+      
     </v-app-bar>
 
     <v-main class="grey lighten-3">
@@ -58,15 +59,26 @@
 </template>
 
 <script>
+import VueRouter from 'vue-router'
+
   export default {
     data: () => ({
       links: [
-         { name:  'Listar', to: '/listar'  },
-        { name:  'Create', to: '/create'  },
+         { name:  'Listar', to: '/listar', icon: 'mdi-view-list'  },
+        { name:  'Create', to: '/create', icon: 'mdi-playlist-plus'  },
 
         
      ],
+     tables: [
+       {name: 'Usuarios', to: '/usuarios', icon: 'mdi-folder'},
+       {name: 'Empleados', to: '/listar', icon: 'mdi-folder'},
       
+     ],
     }),
+  
+
+    methods:{
+   
+    }
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <v-container justify="center" class="pt-10">
-     <!--<h2 class="text-center mb-5">Listado empleados</h2>-->
+     <!--<h2 class="text-center mb-5">Listado usuarios</h2>-->
 
 
      <!---->
@@ -203,7 +203,7 @@ export default {
     snackbarDelete: false, //Variable para desplegar snackbar delete
     textDelete: '',
     limitFirstParam: 0,
-    limitSecondParam: 4,
+    limitSecondParam: 2,
     noMoreRecords: false,
     totalRecords: '',
     contador: '',
@@ -225,22 +225,24 @@ export default {
   },
   methods:{ 
 
-      //Consultar datos de todos los empleados que hay en la base de datos
+      //Consultar datos de todos los usuarios que hay en la base de datos
       consultarDatos(limitFirstParam, limitSecondParam){
 
-    
-         axios.get("http://localhost/empleados/?limitFirstParam="+limitFirstParam+"&limitSecondParam="+limitSecondParam).then((result) => {
+       // console.log(limitFirstParam)
+        // console.log(limitSecondParam)
+         axios.get("http://localhost/usuarios/?limitFirstParam="+limitFirstParam+"&limitSecondParam="+limitSecondParam).then((result) => {
           
-          
+            console.log(result.data)
         this.lista = result.data //Metemos todo el json dentro del array lista
        })
       },
+      
       //Eliminamos el empleado al cual le hayamos dado al boton eliminar.
       eliminarEmpleado(idEmpleado){
 
         //Por axios le pasamos en la url el id del empleado a eliminar y la API se encarga de capturar ese valor y eliminar dado que le pasamos una variable borrar
-       axios.post("http://localhost/empleados/?borrar="+idEmpleado) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
-        .then(response => result.data);
+       axios.post("http://localhost/usuarios/?borrar="+idEmpleado) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
+        .then(response => console.log(response.data));
 
         this.snackbarDelete = !this.snackbarDelete
 
@@ -251,26 +253,23 @@ export default {
         }, 1000);
         
       },
-      //Ordenamos los empleados en orden asc o desc dependiendo del valor que tenga sort id
+      //Ordenamos los usuarios en orden asc o desc dependiendo del valor que tenga sort id
       ordenarPorId(){
         this.sortId = !this.sortId
 
         if (this.sortId === true) { ///Tiene que salir la tabla que las filas salgan de mayor a menor
      
-          //Obtengo todos los empleados en orden descendiente por id
-       
-          axios.get("http://localhost/empleados/?ordenarDescId=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
-            
-          
-          this.lista = result.data //Metemos todo el json dentro del array lista
+          //Obtengo todos los usuarios en orden descendiente por id
+          axios.get("http://localhost/usuarios/?ordenarDescId=1&limitFirstParam="+limitFirstParam+"&limitSecondParam="+limitSecondParam).then((result) => {
+           console.log(result.data)
+         // this.lista = result.data //Metemos todo el json dentro del array lista
           })
 
         }else if (this.sortId === false) { //Tiene que salir la tabla que las filas salgan de menor a mayor 
-           //Obtengo todos los empleados en orden descendiente por id
+           //Obtengo todos los usuarios en orden descendiente por id
         
-          axios.get("http://localhost/empleados/?ordenarAscId=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
-            
-           
+          axios.get("http://localhost/usuarios/?ordenarAscId=1&limitFirstParam="+limitFirstParam+"&limitSecondParam="+limitSecondParam).then((result) => {
+
           this.lista = result.data //Metemos todo el json dentro del array lista
           })
       }
@@ -280,19 +279,17 @@ export default {
 
         if (this.sortNombre === true) { ///Tiene que salir la tabla que las filas salgan de mayor a menor
      
-          //Obtengo todos los empleados en orden descendiente por id
-          axios.get("http://localhost/empleados/?ordenarDescNombre=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
-            
-          
+          //Obtengo todos los usuarios en orden descendiente por id
+          axios.get("http://localhost/usuarios/?ordenarDescNombre=1").then((result) => {
+
           this.lista = result.data //Metemos todo el json dentro del array lista
           })
 
         }else if (this.sortId === false) { //Tiene que salir la tabla que las filas salgan de menor a mayor 
-           //Obtengo todos los empleados en orden descendiente por id
+           //Obtengo todos los usuarios en orden descendiente por id
         
-          axios.get("http://localhost/empleados/?ordenarAscNombre=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
-            
-           
+          axios.get("http://localhost/usuarios/?ordenarAscNombre=1").then((result) => {
+
           this.lista = result.data //Metemos todo el json dentro del array lista
           })
       }
@@ -301,25 +298,23 @@ export default {
         this.sortCorreo = !this.sortCorreo
         if (this.sortCorreo === true) { ///Tiene que salir la tabla que las filas salgan de mayor a menor
     
-        //Obtengo todos los empleados en orden descendiente por id
-          axios.get("http://localhost/empleados/?ordenarDescCorreo=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
-            
-          
-          this.lista = result.data //Metemos todo el json dentro del array lista
-          })
+        //Obtengo todos los usuarios en orden descendiente por id
+        axios.get("http://localhost/usuarios/?ordenarDescCorreo=1").then((result) => {
+
+        this.lista = result.data //Metemos todo el json dentro del array lista
+        })
 
       }else if (this.sortCorreo === false) { //Tiene que salir la tabla que las filas salgan de menor a mayor 
-          //Obtengo todos los empleados en orden descendiente por id
+          //Obtengo todos los usuarios en orden descendiente por id
       
-        axios.get("http://localhost/empleados/?ordenarAscCorreo=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
-            
-           
-          this.lista = result.data //Metemos todo el json dentro del array lista
-          })
+        axios.get("http://localhost/usuarios/?ordenarAscCorreo=1").then((result) => {
+
+        this.lista = result.data //Metemos todo el json dentro del array lista
+        })
     }
     },
     getCountEmployees(){
-       axios.get("http://localhost/empleados/?count=1").then((result) => {
+       axios.get("http://localhost/usuarios/?count=1").then((result) => {
 
           this.totalRecords=  result.data
         
@@ -335,10 +330,10 @@ export default {
         this.limitSecondParam = limitSecondParam
         this.limitFirstParam = (this.limitFirstParam + this.limitSecondParam)
     
-       axios.get("http://localhost/empleados/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+       axios.get("http://localhost/usuarios/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
           
-          if (((this.totalRecords - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +1) - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +2) - this.limitSecondParam) === this.limitFirstParam)) {
-           
+          if ((this.totalRecords - this.limitSecondParam) === this.limitFirstParam) {
+              console.log("El primer parametro y el segundo son iguales")
               this.noMoreRecords = true
               this.lista = result.data
           }else{
@@ -351,18 +346,19 @@ export default {
     getPreviousEmployees(limitFirstParam, limitSecondParam){
         this.noMoreRecords = false
 
-
+      console.log(limitFirstParam + " " + limitSecondParam)
 
       this.limitFirstParam = limitFirstParam
       this.limitSecondParam = limitSecondParam
 
       this.limitFirstParam = (this.limitFirstParam - this.limitSecondParam)
 
+      console.log(this.limitFirstParam)
 
 
-
-      axios.get("http://localhost/empleados/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+      axios.get("http://localhost/usuarios/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
         
+        console.log(result.data)
         this.lista = result.data //Metemos todo el json dentro del array lista
       })
 
