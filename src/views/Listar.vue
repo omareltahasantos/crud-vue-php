@@ -1,9 +1,9 @@
 <template>
-    <v-container justify="center" class="pt-10">
-     <h2 class="text-center mb-5">Listado empleados</h2>
+    <div>
+      <v-container  justify="center" class="pt-10">
+          <h2 class="text-center mb-5">Listado empleados</h2>
 
-
-     <!---->
+          <!---->
      <v-simple-table >
           <template v-slot:default>
             <thead>
@@ -120,53 +120,6 @@
             </tbody>
           </template>
         </v-simple-table> 
-    <!--Si el primer parametro que tiene limit es 0, querra decir que comienza del principio y entonces el boton previous debe estar en disabled-->
-      <v-container class="d-flex flex-row justify-center"> 
-         <v-btn
-              v-if="limitFirstParam === 0"
-              color="blue darken-3"
-              class="ma-2 white--text slide-in-fwd-center"
-              @click="getPreviousEmployees(limitFirstParam, limitSecondParam)"
-              disabled
-        >
-         <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
-        
-         <v-btn
-              v-if="limitFirstParam != 0"
-              color="blue darken-3"
-              class="ma-2 white--text slide-in-fwd-center"
-              @click="getPreviousEmployees(limitFirstParam, limitSecondParam)"
-              
-        >
-          <v-icon>mdi-chevron-left</v-icon>
-         </v-btn>
-
-         <!--Si noMoreRecords es true, querra decir que no hay mas resultados para mostrar, entonces se aplicara un disable al boton-->
-          <v-btn
-              v-if="noMoreRecords === true"
-              color="blue darken-3"
-              class="ma-2 white--text slide-in-fwd-center"
-              @click="getNextEmployees(limitFirstParam, limitSecondParam)"
-              disabled
-              
-        >
-         <v-icon>mdi-chevron-right</v-icon>
-        </v-btn>
-          <v-btn 
-              v-if="noMoreRecords === false"
-              color="blue darken-3"
-              class="ma-2 white--text slide-in-fwd-center"
-              @click="getNextEmployees(limitFirstParam, limitSecondParam)"
-
-              
-              
-        >
-         <v-icon>mdi-chevron-right</v-icon>
-        </v-btn>
-      </v-container>
-     
-
        <!-- Snackbar para el boton delete -->
         <v-snackbar
              v-model="snackbarDelete"
@@ -184,8 +137,55 @@
             </v-btn>
           </template>
         </v-snackbar>
+      </v-container>
+        <!--Si el primer parametro que tiene limit es 0, querra decir que comienza del principio y entonces el boton previous debe estar en disabled-->
+      <v-container class="d-flex flex-row justify-center"> 
+         <v-btn
+              v-if="limitFirstParam === 0"
+              color="blue darken-3"
+              class="ma-2 white--text slide-in-fwd-center absolute"
+              @click="getPreviousEmployees(limitFirstParam, limitSecondParam)"
+              disabled
+        >
+         <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+        
+         <v-btn
+              v-if="limitFirstParam != 0"
+              color="blue darken-3"
+              class="ma-2 white--text slide-in-fwd-center absolute"
+              @click="getPreviousEmployees(limitFirstParam, limitSecondParam)"
+              
+        >
+          <v-icon>mdi-chevron-left</v-icon>
+         </v-btn>
+
+         <!--Si noMoreRecords es true, querra decir que no hay mas resultados para mostrar, entonces se aplicara un disable al boton-->
+          <v-btn
+              v-if="noMoreRecords === true"
+              color="blue darken-3"
+              class="ma-2 white--text slide-in-fwd-center absolute"
+              @click="getNextEmployees(limitFirstParam, limitSecondParam)"
+              disabled
+              
+        >
+         <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+          <v-btn 
+              v-if="noMoreRecords === false"
+              color="blue darken-3"
+              class="ma-2 white--text slide-in-fwd-center absolute" 
+              @click="getNextEmployees(limitFirstParam, limitSecondParam)"
+
+              
+              
+        >
+         <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </v-container>
+     
        
-    </v-container>
+    </div>
     
 </template>
 
@@ -384,6 +384,8 @@ export default {
 
   color: red;
 }
-/* Helper classes */
+.absolute{
+  position: fixed;
+}
 
 </style>
