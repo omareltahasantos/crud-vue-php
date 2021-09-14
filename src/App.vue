@@ -5,7 +5,7 @@
       color="white"
       flat
     >
-    
+  
         <v-tabs
        
           background-color="blue-grey darken-3 accent-4"
@@ -23,12 +23,14 @@
         {{link.name}}
         <v-icon >{{link.icon}}</v-icon>
       </v-tab>
+      <v-tab>
+        
+      </v-tab>
       
      
         </v-tabs>
       <!--Hacer una lista en vez de tabs-->
-      
-     
+  
 
       
     </v-app-bar>

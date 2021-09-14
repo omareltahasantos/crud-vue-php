@@ -1,6 +1,6 @@
 <template>
     <v-container justify="center" class="pt-10">
-     <!--<h2 class="text-center mb-5">Listado empleados</h2>-->
+     <h2 class="text-center mb-5">Listado empleados</h2>
 
 
      <!---->
@@ -121,16 +121,17 @@
           </template>
         </v-simple-table> 
     <!--Si el primer parametro que tiene limit es 0, querra decir que comienza del principio y entonces el boton previous debe estar en disabled-->
-
-        <v-btn
+      <v-container class="d-flex flex-row justify-center"> 
+         <v-btn
               v-if="limitFirstParam === 0"
               color="blue darken-3"
               class="ma-2 white--text slide-in-fwd-center"
               @click="getPreviousEmployees(limitFirstParam, limitSecondParam)"
               disabled
         >
-        Previous
+         <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
+        
          <v-btn
               v-if="limitFirstParam != 0"
               color="blue darken-3"
@@ -138,7 +139,7 @@
               @click="getPreviousEmployees(limitFirstParam, limitSecondParam)"
               
         >
-        previous
+          <v-icon>mdi-chevron-left</v-icon>
          </v-btn>
 
          <!--Si noMoreRecords es true, querra decir que no hay mas resultados para mostrar, entonces se aplicara un disable al boton-->
@@ -150,18 +151,21 @@
               disabled
               
         >
-        Next
+         <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
-          <v-btn
+          <v-btn 
               v-if="noMoreRecords === false"
               color="blue darken-3"
               class="ma-2 white--text slide-in-fwd-center"
               @click="getNextEmployees(limitFirstParam, limitSecondParam)"
+
               
               
         >
-        Next
+         <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
+      </v-container>
+     
 
        <!-- Snackbar para el boton delete -->
         <v-snackbar
@@ -337,7 +341,7 @@ export default {
     
        axios.get("http://localhost/empleados/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
           
-          if (((this.totalRecords - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +1) - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +2) - this.limitSecondParam) === this.limitFirstParam)) {
+          if (((this.totalRecords - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +1) - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +2) - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +3) - this.limitSecondParam) === this.limitFirstParam)) {
            
               this.noMoreRecords = true
               this.lista = result.data
