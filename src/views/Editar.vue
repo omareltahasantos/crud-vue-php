@@ -107,7 +107,7 @@ export default {
         this.snackbarEditar = !this.snackbarEditar
         this.textEditar = 'El registro con id: ' + this.empleado.id + ' ha sido modificado!'
         setTimeout(() => {
-            window.location.href= "/listar"  
+            window.location.href= "/#/listar"  
         }, 1000);
       
     }
