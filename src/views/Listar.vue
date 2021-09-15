@@ -233,7 +233,7 @@ export default {
       consultarDatos(limitFirstParam, limitSecondParam){
 
     
-         axios.get("http://localhost/empleados/?limitFirstParam="+limitFirstParam+"&limitSecondParam="+limitSecondParam).then((result) => {
+         axios.get("https://employeesphp.herokuapp.com/?limitFirstParam="+limitFirstParam+"&limitSecondParam="+limitSecondParam).then((result) => {
           
           
         this.lista = result.data //Metemos todo el json dentro del array lista
@@ -243,7 +243,7 @@ export default {
       eliminarEmpleado(idEmpleado){
 
         //Por axios le pasamos en la url el id del empleado a eliminar y la API se encarga de capturar ese valor y eliminar dado que le pasamos una variable borrar
-       axios.post("http://localhost/empleados/?borrar="+idEmpleado) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
+       axios.post("https://employeesphp.herokuapp.com/?borrar="+idEmpleado) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
         .then(response => result.data);
 
         this.snackbarDelete = !this.snackbarDelete
@@ -263,7 +263,7 @@ export default {
      
           //Obtengo todos los empleados en orden descendiente por id
        
-          axios.get("http://localhost/empleados/?ordenarDescId=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+          axios.get("https://employeesphp.herokuapp.com/?ordenarDescId=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
             
           
           this.lista = result.data //Metemos todo el json dentro del array lista
@@ -272,7 +272,7 @@ export default {
         }else if (this.sortId === false) { //Tiene que salir la tabla que las filas salgan de menor a mayor 
            //Obtengo todos los empleados en orden descendiente por id
         
-          axios.get("http://localhost/empleados/?ordenarAscId=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+          axios.get("https://employeesphp.herokuapp.com/?ordenarAscId=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
             
            
           this.lista = result.data //Metemos todo el json dentro del array lista
@@ -285,7 +285,7 @@ export default {
         if (this.sortNombre === true) { ///Tiene que salir la tabla que las filas salgan de mayor a menor
      
           //Obtengo todos los empleados en orden descendiente por id
-          axios.get("http://localhost/empleados/?ordenarDescNombre=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+          axios.get("https://employeesphp.herokuapp.com/?ordenarDescNombre=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
             
           
           this.lista = result.data //Metemos todo el json dentro del array lista
@@ -294,7 +294,7 @@ export default {
         }else if (this.sortId === false) { //Tiene que salir la tabla que las filas salgan de menor a mayor 
            //Obtengo todos los empleados en orden descendiente por id
         
-          axios.get("http://localhost/empleados/?ordenarAscNombre=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+          axios.get("https://employeesphp.herokuapp.com/?ordenarAscNombre=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
             
            
           this.lista = result.data //Metemos todo el json dentro del array lista
@@ -306,7 +306,7 @@ export default {
         if (this.sortCorreo === true) { ///Tiene que salir la tabla que las filas salgan de mayor a menor
     
         //Obtengo todos los empleados en orden descendiente por id
-          axios.get("http://localhost/empleados/?ordenarDescCorreo=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+          axios.get("https://employeesphp.herokuapp.com/?ordenarDescCorreo=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
             
           
           this.lista = result.data //Metemos todo el json dentro del array lista
@@ -315,7 +315,7 @@ export default {
       }else if (this.sortCorreo === false) { //Tiene que salir la tabla que las filas salgan de menor a mayor 
           //Obtengo todos los empleados en orden descendiente por id
       
-        axios.get("http://localhost/empleados/?ordenarAscCorreo=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+        axios.get("https://employeesphp.herokuapp.com/?ordenarAscCorreo=1&limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
             
            
           this.lista = result.data //Metemos todo el json dentro del array lista
@@ -323,7 +323,7 @@ export default {
     }
     },
     getCountEmployees(){
-       axios.get("http://localhost/empleados/?count=1").then((result) => {
+       axios.get("https://employeesphp.herokuapp.com/?count=1").then((result) => {
 
           this.totalRecords=  result.data
         
@@ -339,7 +339,7 @@ export default {
         this.limitSecondParam = limitSecondParam
         this.limitFirstParam = (this.limitFirstParam + this.limitSecondParam)
     
-       axios.get("http://localhost/empleados/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+       axios.get("https://employeesphp.herokuapp.com/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
           
           if (((this.totalRecords - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +1) - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +2) - this.limitSecondParam) === this.limitFirstParam) || (((this.totalRecords +3) - this.limitSecondParam) === this.limitFirstParam)) {
            
@@ -365,7 +365,7 @@ export default {
 
 
 
-      axios.get("http://localhost/empleados/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
+      axios.get("https://employeesphp.herokuapp.com/?limitFirstParam="+this.limitFirstParam+"&limitSecondParam="+this.limitSecondParam).then((result) => {
         
         this.lista = result.data //Metemos todo el json dentro del array lista
       })
