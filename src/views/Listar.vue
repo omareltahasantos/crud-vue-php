@@ -251,7 +251,7 @@ export default {
         this.textDelete = 'El registro con id: ' + idEmpleado + ', ha sido eliminado!'
         
         setTimeout(() => {
-          window.location.href="/#/listar" //Nos refresca la pagina para que salga que se ha eliminado el usuario
+          window.location.href="/#/listar/" //Nos refresca la pagina para que salga que se ha eliminado el usuario
         }, 1000);
         
       },
