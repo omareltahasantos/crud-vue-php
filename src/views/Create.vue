@@ -92,7 +92,7 @@ export default {
 
       //Redireccionar a /listar
       setTimeout(() => {
-         window.location.href= "/listar"
+         window.location.href= "https://6141bccc1215e800071cd7a0--eager-lalande-11ea85.netlify.app/#/listar"
       }, 1000);
 
      
