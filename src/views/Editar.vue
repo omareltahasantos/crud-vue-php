@@ -82,7 +82,7 @@ export default {
   created(){
 
     // Con this.id recibimos el id por prop que viene por la URL
-        axios.get("http://localhost/empleados/?consultar="+this.id).then((result) => {
+        axios.get("https://employeesphp.herokuapp.com/?consultar="+this.id).then((result) => {
 
      
           this.empleado.id = result.data[0].id
@@ -101,7 +101,7 @@ export default {
 
         const datosEnviar2 =  { id:this.empleado.id, nombre: this.empleado.name, correo: this.empleado.email}
 
-       axios.post("http://localhost/empleados/?actualizar="+this.empleado.id, datosEnviar2) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
+       axios.post("https://employeesphp.herokuapp.com/?actualizar="+this.empleado.id, datosEnviar2) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
        .then(response => console.log(response.data));
 
         this.snackbarEditar = !this.snackbarEditar

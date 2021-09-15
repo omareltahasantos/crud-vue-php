@@ -83,7 +83,7 @@ export default {
       const datosEnviar = { nombre: this.empleado.name, correo: this.empleado.email };
 
       console.log(datosEnviar)
-      axios.post("http://localhost/empleados/?insertar=1", datosEnviar) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
+      axios.post("https://employeesphp.herokuapp.com/?insertar=1", datosEnviar) //Enviamos por post a la URL de la api la variable insertar y ademas el objeto json convertido en string para que lo pueda leer la api 
         .then(response => console.log(response.data));
 
         this.snackbarCreate = !this.snackbarCreate
