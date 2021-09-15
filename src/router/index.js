@@ -5,7 +5,7 @@ import Home from '../views/Home.vue'
 import Listar from '../views/Listar.vue'
 import Create from '../views/Create.vue'
 import Editar from '../views/Editar.vue'
-import Delete from '../views/Delete.vue'
+
 
 
 
@@ -34,13 +34,6 @@ const routes = [
     props: true
   },
 
-  {
-    path: '/Delete',
-    name: 'Delete',
-    component: Delete,
-  
-  },
- 
 ]
 
 const router = new VueRouter({
