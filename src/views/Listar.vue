@@ -252,6 +252,7 @@ export default {
         
         setTimeout(() => {
           window.location.href="/#/" //Nos refresca la pagina para que salga que se ha eliminado el usuario
+          location.reload();
         }, 1000);
         
       },
